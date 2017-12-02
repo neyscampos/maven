@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head></h:head>
+
+
+<h:body>
+	<p:panel header="Projeto gravar Clientes com Maven">
+		<h:form id="form1">
+			<p:panelGrid columns="2">
+				<h:outputText value="Nome" />
+				<p:inputText value="#{mb.cliente.nome}" required="true" />
+
+				<h:outputText value="Email" />
+				<p:inputText value="#{mb.cliente.email}" required="true" />
+
+				<p:commandButton value="Gravar os Dados" action="#{mb.gravar}"
+					ajax="true" update=":form1, :form2"></p:commandButton>
+			</p:panelGrid>
+			<p:growl></p:growl>
+		</h:form>
+	</p:panel>
+
+	<p:panel header="Consulta DataGrid">
+		<h:form id="form2">
+			<p:dataGrid value="#{mb.clientes}" columns="2" layout="grid" rows="2"
+				paginator="true" var="cliente">
+				<f:facet name="header">
+                   Clientes   
+             </f:facet>
+				<p:column>
+					<p:panel header="#{cliente.nome}" style="text-align:center"
+						styleClass="width:300px">
+						<p:panelGrid columns="2">
+							<h:outputText value="IdCliente" />
+							<p:inputText value="#{cliente.idCliente}" readonly="true" />
+							<h:outputText value="Email" />
+							<p:inputText value="#{cliente.email}" readonly="true" />
+						</p:panelGrid>
+					</p:panel>
+				</p:column>
+			</p:dataGrid>
+
+		</h:form>
+	</p:panel>
+
+
+
+
+</h:body>
+
+
+</html>
